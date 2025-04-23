@@ -87,4 +87,3 @@ def get_status():
         "player_health": int(player_health),
         "enemy_health": int(enemy_health),
     }
-
