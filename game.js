@@ -24,6 +24,7 @@ async function main() {
     const status = statusRaw.toJs ? statusRaw.toJs() : statusRaw;
 
 
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let y = 0; y < tilemap.length; y++) {
