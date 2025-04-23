@@ -51,25 +51,21 @@ async function main() {
   }
 
   document.addEventListener("keydown", (e) => {
-    const moves = {
-      ArrowUp: [0, -1],
-      ArrowDown: [0, 1],
-      ArrowLeft: [-1, 0],
-      ArrowRight: [1, 0],
-    };
+  const moves = {
+    ArrowUp: [0, -1],
+    ArrowDown: [0, 1],
+    ArrowLeft: [-1, 0],
+    ArrowRight: [1, 0],
+  };
 
-    if (e.key in moves) {
-      pyodide.globals.get("move_player")(...moves[e.key]);
-    } else if (e.key === " ") {
-      pyodide.globals.get("attack")();
-    } else if (e.key.toLowerCase() === "t") {
-      pyodide.globals.get("transform")();
-    }
-
+  if (e.key in moves) {
+    pyodide.globals.get("move_player")(...moves[e.key]);
     draw();
-  });
-
-  draw();
-}
-
-main();
+  } else if (e.key === " ") {
+    pyodide.globals.get("attack")();
+    draw();
+  } else if (e.key.toLowerCase() === "t") {
+    pyodide.globals.get("transform")();
+    draw();
+  }
+});
