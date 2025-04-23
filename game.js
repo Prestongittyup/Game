@@ -19,7 +19,10 @@ async function main() {
     const tilemap = pyodide.globals.get("get_tilemap")().toJs();
     const player = pyodide.globals.get("get_player_position")().toJs();
     const enemy = pyodide.globals.get("get_enemy_position")()?.toJs();
-    const status = pyodide.globals.get("get_status")().toJs();
+    const getStatus = pyodide.globals.get("get_status");
+    const statusRaw = getStatus();
+    const status = statusRaw.toJs ? statusRaw.toJs() : statusRaw;
+
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
