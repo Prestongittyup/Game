@@ -83,7 +83,8 @@ def transform():
 
 def get_status():
     return {
-        "player_form": player_form,
-        "player_health": player_health,
-        "enemy_health": enemy_health
+        "player_form": str(player_form),
+        "player_health": int(player_health),
+        "enemy_health": int(enemy_health),
     }
+
