@@ -9,12 +9,27 @@ async function main() {
   const ctx = canvas.getContext("2d");
 
   const tileSize = 32;
-  const playerColor = "#4af";
+  const colors = {
+    0: "#222", // floor
+    1: "#444", // wall
+    2: "#2a2", // trigger tile
+  };
 
   function draw() {
+    const tilemap = pyodide.globals.get("get_tilemap")().toJs();
+    const pos = pyodide.globals.get("get_player_position")().toJs();
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let pos = pyodide.globals.get("get_player_position")().toJs();
-    ctx.fillStyle = playerColor;
+
+    for (let y = 0; y < tilemap.length; y++) {
+      for (let x = 0; x < tilemap[0].length; x++) {
+        ctx.fillStyle = colors[tilemap[y][x]];
+        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+      }
+    }
+
+    // draw player
+    ctx.fillStyle = "#4af";
     ctx.fillRect(pos.x * tileSize, pos.y * tileSize, tileSize, tileSize);
   }
 
